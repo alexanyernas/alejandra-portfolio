@@ -1,0 +1,188 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-primary: #8c52ff;
+  --color-primary-light: #a67dff;
+  --color-primary-dark: #6b3fd4;
+  --color-primary-50: #f5f0ff;
+  --color-primary-100: #ede5ff;
+  --color-primary-200: #d4c4ff;
+  --color-primary-900: #2a1a4e;
+  --color-surface: #faf8ff;
+  --color-surface-dark: #1a1a2e;
+  --color-dark-bg: #0f0f1a;
+  --color-dark-card: #1a1a2e;
+  --color-dark-card-hover: #222240;
+  --color-dark-border: #2a2a4a;
+  --color-text-primary: #1a1a2e;
+  --color-text-secondary: #4a4a6a;
+  --color-text-muted: #8888a0;
+
+  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-text-primary);
+  background-color: #ffffff;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark body {
+  background-color: var(--color-dark-bg);
+  color: #e0e0f0;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #1a1a2e;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 4px;
+}
+
+::selection {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-primary), #c874ff, var(--color-primary));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 4s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% center; }
+  50% { background-position: 200% center; }
+}
+
+/* Glass effect */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.dark .glass {
+  background: rgba(26, 26, 46, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Cursor blink */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* GPU-accelerated CSS animations replacing Framer Motion continuous loops */
+@keyframes orb-pulse-1 {
+  0%, 100% { transform: scale(1) translate3d(0,0,0); opacity: 0.3; }
+  50% { transform: scale(1.15) translate3d(0,0,0); opacity: 0.45; }
+}
+
+@keyframes orb-pulse-2 {
+  0%, 100% { transform: scale(1.1) translate3d(0,0,0); opacity: 0.2; }
+  50% { transform: scale(1) translate3d(0,0,0); opacity: 0.35; }
+}
+
+@keyframes float-shape-1 {
+  0%, 100% { transform: translateY(-15px) rotate(0deg) translate3d(0,0,0); }
+  50% { transform: translateY(15px) rotate(180deg) translate3d(0,0,0); }
+}
+
+@keyframes float-shape-2 {
+  0%, 100% { transform: translateY(12px) rotate(360deg) translate3d(0,0,0); }
+  50% { transform: translateY(-12px) rotate(180deg) translate3d(0,0,0); }
+}
+
+@keyframes float-shape-3 {
+  0%, 100% { transform: translateY(-10px) translate3d(0,0,0); }
+  50% { transform: translateY(18px) translate3d(0,0,0); }
+}
+
+@keyframes badge-float-1 {
+  0%, 100% { transform: translateY(-6px) translate3d(0,0,0); }
+  50% { transform: translateY(6px) translate3d(0,0,0); }
+}
+
+@keyframes badge-float-2 {
+  0%, 100% { transform: translateY(6px) translate3d(0,0,0); }
+  50% { transform: translateY(-6px) translate3d(0,0,0); }
+}
+
+@keyframes bounce-scroll {
+  0%, 100% { transform: translateY(0) translate3d(0,0,0); }
+  50% { transform: translateY(6px) translate3d(0,0,0); }
+}
+
+.animate-orb-1 { animation: orb-pulse-1 8s ease-in-out infinite; }
+.animate-orb-2 { animation: orb-pulse-2 10s ease-in-out infinite; }
+.animate-float-shape-1 { animation: float-shape-1 15s ease-in-out infinite; }
+.animate-float-shape-2 { animation: float-shape-2 12s ease-in-out infinite; }
+.animate-float-shape-3 { animation: float-shape-3 18s ease-in-out infinite; }
+.animate-badge-1 { animation: badge-float-1 4s ease-in-out infinite; }
+.animate-badge-2 { animation: badge-float-2 5s ease-in-out infinite; }
+.animate-bounce-scroll { animation: bounce-scroll 2s ease-in-out infinite; }
+
+/* Pulse glow */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(140, 82, 255, 0.2); }
+  50% { box-shadow: 0 0 50px rgba(140, 82, 255, 0.4); }
+}
+
+.animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+
+/* Spin slow */
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow { animation: spin-slow 20s linear infinite; }
+
+/* CSS-based scroll reveal — replaces Framer Motion whileInView */
+.reveal {
+  opacity: 0;
+  transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+.reveal-up { transform: translateY(40px); }
+.reveal-down { transform: translateY(-40px); }
+.reveal-left { transform: translateX(40px); }
+.reveal-right { transform: translateX(-40px); }
+.reveal-scale { transform: scale(0.95); }
