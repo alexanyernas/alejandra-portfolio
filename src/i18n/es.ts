@@ -16,7 +16,7 @@ export const es: Translations = {
     viewProjects: 'Ver Proyectos',
     contact: 'Contacto',
     scroll: 'Scroll',
-    yearsExp: '4+ años',
+    yearsExp: '8+ años',
     ofExperience: 'de experiencia',
     teacher: 'Preparadora',
     university: 'universitaria',
@@ -30,7 +30,7 @@ export const es: Translations = {
       'En la Universidad Central de Venezuela, tengo el privilegio de enseñar Interacción Humano-Computador y Tópicos Avanzados de IHC, materias donde fusiono teoría y práctica para formar a la próxima generación de diseñadores.',
     ],
     stats: {
-      years: '4+',
+      years: '8+',
       yearsLabel: 'Años de experiencia',
       projects: '18+',
       projectsLabel: 'Proyectos realizados',
@@ -78,17 +78,6 @@ export const es: Translations = {
         ],
       },
       {
-        title: 'Cofundadora',
-        company: 'EDUCA2',
-        period: '2018 - 2021',
-        current: false,
-        responsibilities: [
-          'Diseño de contenido educativo digital',
-          'Dictado de cursos y talleres',
-          'Mantenimiento web y branding',
-        ],
-      },
-      {
         title: 'Preparadora Universitaria',
         company: 'Universidad Central de Venezuela',
         period: '2019 - Actualidad',
@@ -108,6 +97,17 @@ export const es: Translations = {
           'Estrategia de marketing digital',
           'Gestión de plataformas freelance',
           'Captación de clientes',
+        ],
+      },
+      {
+        title: 'Cofundadora',
+        company: 'EDUCA2',
+        period: '2018 - 2021',
+        current: false,
+        responsibilities: [
+          'Diseño de contenido educativo digital',
+          'Dictado de cursos y talleres',
+          'Mantenimiento web y branding',
         ],
       },
     ],

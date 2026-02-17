@@ -16,7 +16,7 @@ export const en: Translations = {
     viewProjects: 'View Projects',
     contact: 'Contact',
     scroll: 'Scroll',
-    yearsExp: '4+ years',
+    yearsExp: '8+ years',
     ofExperience: 'of experience',
     teacher: 'University',
     university: 'instructor',
@@ -30,7 +30,7 @@ export const en: Translations = {
       'At the Central University of Venezuela, I have the privilege of teaching Human-Computer Interaction and Advanced HCI Topics, courses where I blend theory and practice to train the next generation of designers.',
     ],
     stats: {
-      years: '4+',
+      years: '8+',
       yearsLabel: 'Years of experience',
       projects: '18+',
       projectsLabel: 'Projects completed',
@@ -78,17 +78,6 @@ export const en: Translations = {
         ],
       },
       {
-        title: 'Co-founder',
-        company: 'EDUCA2',
-        period: '2018 - 2021',
-        current: false,
-        responsibilities: [
-          'Digital educational content design',
-          'Course and workshop instruction',
-          'Web maintenance and branding',
-        ],
-      },
-      {
         title: 'University Instructor',
         company: 'Central University of Venezuela',
         period: '2019 - Present',
@@ -108,6 +97,17 @@ export const en: Translations = {
           'Digital marketing strategy',
           'Freelance platform management',
           'Client acquisition',
+        ],
+      },
+      {
+        title: 'Co-founder',
+        company: 'EDUCA2',
+        period: '2018 - 2021',
+        current: false,
+        responsibilities: [
+          'Digital educational content design',
+          'Course and workshop instruction',
+          'Web maintenance and branding',
         ],
       },
     ],
