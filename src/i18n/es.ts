@@ -26,7 +26,7 @@ export const es: Translations = {
     title: 'Transformando pixels en experiencias memorables',
     subtitle: '',
     bio: [
-      '¡Hola! Soy Alejandra Giannattasio, Diseñadora UI/UX con más de 4 años de experiencia creando interfaces intuitivas y accesibles. Mi enfoque combina principios de psicología cognitiva con las últimas tendencias en diseño digital.',
+      '¡Hola! Soy Alejandra Giannattasio, Diseñadora UI/UX con más de 8 años de experiencia creando interfaces intuitivas y accesibles. Mi enfoque combina principios de psicología cognitiva con las últimas tendencias en diseño digital.',
       'En la Universidad Central de Venezuela, tengo el privilegio de enseñar Interacción Humano-Computador y Tópicos Avanzados de IHC, materias donde fusiono teoría y práctica para formar a la próxima generación de diseñadores.',
     ],
     stats: {

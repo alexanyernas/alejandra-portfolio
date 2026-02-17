@@ -26,7 +26,7 @@ export const en: Translations = {
     title: 'Turning pixels into memorable experiences',
     subtitle: '',
     bio: [
-      "Hi! I'm Alejandra Giannattasio, a UI/UX Designer with over 4 years of experience creating interfaces intuitive and accessible. My approach combines cognitive psychology principles with the latest trends in digital design.",
+      "Hi! I'm Alejandra Giannattasio, a UI/UX Designer with over 8 years of experience creating interfaces intuitive and accessible. My approach combines cognitive psychology principles with the latest trends in digital design.",
       'At the Central University of Venezuela, I have the privilege of teaching Human-Computer Interaction and Advanced HCI Topics, courses where I blend theory and practice to train the next generation of designers.',
     ],
     stats: {
