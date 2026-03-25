@@ -41,7 +41,7 @@ export const experiences: Experience[] = [
     ],
   },
   {
-    title: 'Preparadora Universitaria',
+    title: 'Profesora Universitaria',
     company: 'Universidad Central de Venezuela',
     period: '2019 - Actualidad',
     current: true,

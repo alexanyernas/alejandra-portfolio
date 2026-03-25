@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, ChevronLeft, ChevronRight } from 'lucide-react'
 import type { Project } from '@/data/projects'
@@ -8,12 +8,29 @@ interface LightboxProps {
   onClose: () => void
 }
 
+const ZOOM_FACTOR = 3
+const ZOOM_PANEL_SIZE = 280
+
+interface ZoomState {
+  x: number   // 0–1 fraction of image width
+  y: number   // 0–1 fraction of image height
+  imgW: number
+  imgH: number
+}
+
 export default function Lightbox({ project, onClose }: LightboxProps) {
   const [currentImage, setCurrentImage] = useState(0)
+  const [zoom, setZoom] = useState<ZoomState | null>(null)
+  const imgRef = useRef<HTMLImageElement>(null)
 
   useEffect(() => {
     setCurrentImage(0)
+    setZoom(null)
   }, [project])
+
+  useEffect(() => {
+    setZoom(null)
+  }, [currentImage])
 
   useEffect(() => {
     if (project) {
@@ -40,6 +57,21 @@ export default function Lightbox({ project, onClose }: LightboxProps) {
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [handleKeyDown])
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const img = imgRef.current
+    if (!img) return
+    const rect = img.getBoundingClientRect()
+    const x = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width))
+    const y = Math.max(0, Math.min(1, (e.clientY - rect.top) / rect.height))
+    setZoom({ x, y, imgW: rect.width, imgH: rect.height })
+  }
+
+  // Lens dimensions (the area on the image that maps to the zoom panel)
+  const lensW = zoom ? zoom.imgW / ZOOM_FACTOR : 0
+  const lensH = zoom ? zoom.imgH / ZOOM_FACTOR : 0
+  const lensLeft = zoom ? Math.max(0, Math.min(zoom.imgW - lensW, zoom.x * zoom.imgW - lensW / 2)) : 0
+  const lensTop  = zoom ? Math.max(0, Math.min(zoom.imgH - lensH, zoom.y * zoom.imgH - lensH / 2)) : 0
 
   if (!project) return null
 
@@ -74,19 +106,54 @@ export default function Lightbox({ project, onClose }: LightboxProps) {
           onClick={(e) => e.stopPropagation()}
           className="relative max-w-5xl max-h-[80vh] w-full flex items-center justify-center"
         >
-          <AnimatePresence mode="wait">
-            <motion.img
-              key={currentImage}
-              src={`/projects/${project.folder}/${currentImage + 1}.webp`}
-              alt={`${project.name} - Imagen ${currentImage + 1}`}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.3 }}
-              className="max-h-[80vh] max-w-full object-contain rounded-lg"
-            />
-          </AnimatePresence>
+          <div
+            className="relative"
+            onMouseMove={handleMouseMove}
+            onMouseLeave={() => setZoom(null)}
+          >
+            <AnimatePresence mode="wait">
+              <motion.img
+                ref={imgRef}
+                key={currentImage}
+                src={`/projects/${project.folder}/${currentImage + 1}.webp`}
+                alt={`${project.name} - Imagen ${currentImage + 1}`}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.3 }}
+                className="max-h-[80vh] max-w-full object-contain rounded-lg"
+              />
+            </AnimatePresence>
+
+            {/* Lens indicator */}
+            {zoom && (
+              <div
+                className="absolute pointer-events-none border-2 border-white/80 bg-white/10 backdrop-blur-[1px]"
+                style={{
+                  left: lensLeft,
+                  top: lensTop,
+                  width: lensW,
+                  height: lensH,
+                }}
+              />
+            )}
+          </div>
         </motion.div>
+
+        {/* Zoom panel */}
+        {zoom && (
+          <div
+            className="hidden lg:block absolute bottom-16 right-6 rounded-xl border-2 border-white/20 shadow-2xl overflow-hidden pointer-events-none"
+            style={{
+              width: ZOOM_PANEL_SIZE,
+              height: ZOOM_PANEL_SIZE,
+              backgroundImage: `url(/projects/${project.folder}/${currentImage + 1}.webp)`,
+              backgroundSize: `${ZOOM_FACTOR * 100}%`,
+              backgroundPosition: `${zoom.x * 100}% ${zoom.y * 100}%`,
+              backgroundRepeat: 'no-repeat',
+            }}
+          />
+        )}
 
         {/* Navigation */}
         {project.imagesCount > 1 && (

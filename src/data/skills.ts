@@ -5,7 +5,7 @@ export interface TechnicalSkill {
 }
 
 export const technicalSkills: TechnicalSkill[] = [
-  { name: 'Figma', icon: '/skills/figma.svg', level: 95 },
+  { name: 'Figma', icon: '/skills/figma.svg', level: 100 },
   { name: 'Adobe XD', icon: '/skills/xd.svg', level: 100 },
   { name: 'Sketch', icon: '/skills/sketch.svg', level: 75 },
   { name: 'Illustrator', icon: '/skills/illustrator.svg', level: 100 },
@@ -23,6 +23,5 @@ export const softSkills: string[] = [
   'Resolución de problemas',
   'Metodologías ágiles',
   'Comunicación efectiva',
-  'Redacción',
-  'Tolerancia al estrés',
+  'Redacción'
 ]

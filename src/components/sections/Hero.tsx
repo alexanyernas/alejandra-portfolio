@@ -1,12 +1,15 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { ArrowDown, Sparkles } from 'lucide-react'
+import { ArrowDown, Sparkles, FileText, FolderOpen, Mail } from 'lucide-react'
 import { useTypewriter } from '@/hooks/useTypewriter'
 import { useLanguage } from '@/contexts/LanguageContext'
 import profileImg from '@/assets/me.webp'
+import CVModal from '@/components/ui/CVModal'
 
 export default function Hero() {
   const { t } = useLanguage()
   const typedText = useTypewriter(t.hero.roles, 80, 40, 2500)
+  const [cvOpen, setCvOpen] = useState(false)
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
@@ -82,14 +85,23 @@ export default function Hero() {
             >
               <button
                 onClick={() => scrollTo('projects')}
-                className="px-8 py-4 bg-primary hover:bg-primary-dark text-white font-semibold rounded-full transition-all duration-300 shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5 cursor-pointer"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary hover:bg-primary-dark text-white font-semibold rounded-full transition-all duration-300 shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5 cursor-pointer"
               >
+                <FolderOpen className="w-4 h-4" />
                 {t.hero.viewProjects}
               </button>
               <button
-                onClick={() => scrollTo('contact')}
-                className="px-8 py-4 border-2 border-primary/20 hover:border-primary text-text-primary dark:text-white font-semibold rounded-full transition-all duration-300 hover:-translate-y-0.5 cursor-pointer"
+                onClick={() => setCvOpen(true)}
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-primary/20 hover:border-primary text-text-primary dark:text-white font-semibold rounded-full transition-all duration-300 hover:-translate-y-0.5 cursor-pointer"
               >
+                <FileText className="w-4 h-4" />
+                {t.hero.viewCV}
+              </button>
+              <button
+                onClick={() => scrollTo('contact')}
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-primary/20 hover:border-primary text-text-primary dark:text-white font-semibold rounded-full transition-all duration-300 hover:-translate-y-0.5 cursor-pointer"
+              >
+                <Mail className="w-4 h-4" />
                 {t.hero.contact}
               </button>
             </motion.div>
@@ -159,6 +171,8 @@ export default function Hero() {
           <ArrowDown className="w-4 h-4" />
         </div>
       </motion.div>
+
+      <CVModal isOpen={cvOpen} onClose={() => setCvOpen(false)} />
     </section>
   )
 }

@@ -5,7 +5,7 @@ import ScrollReveal from '@/components/ui/ScrollReveal'
 import { useScrollReveal } from '@/hooks/useScrollReveal'
 import { technicalSkills } from '@/data/skills'
 import { useLanguage } from '@/contexts/LanguageContext'
-import profileImg from '@/assets/me.webp'
+import profileImg from '@/assets/me2.webp'
 
 export default function About() {
   const { t } = useLanguage()

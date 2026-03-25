@@ -1,6 +1,7 @@
-import { Eye } from 'lucide-react'
+import { Eye, Star } from 'lucide-react'
 import type { Project } from '@/data/projects'
 import { useScrollReveal } from '@/hooks/useScrollReveal'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 interface ProjectCardProps {
   project: Project
@@ -12,6 +13,7 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project, index, onClick, translatedName, translatedDescription }: ProjectCardProps) {
   const { ref, isVisible } = useScrollReveal({ rootMargin: '-30px 0px' })
+  const { t } = useLanguage()
   const delay = Math.min(index * 0.06, 0.36)
 
   return (
@@ -22,6 +24,12 @@ export default function ProjectCard({ project, index, onClick, translatedName, t
       onClick={onClick}
     >
       <div className="relative overflow-hidden rounded-2xl bg-primary-50 dark:bg-dark-card aspect-[4/3] shadow-sm dark:shadow-none dark:border dark:border-dark-border">
+        {project.featured && (
+          <div className="absolute top-3 left-3 z-10 flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary text-white text-xs font-semibold shadow-md shadow-primary/30">
+            <Star className="w-3 h-3 fill-white" />
+            {t.projects.featuredLabel}
+          </div>
+        )}
         <img
           src={`/projects/${project.folder}/1.webp`}
           alt={translatedName}
@@ -32,7 +40,7 @@ export default function ProjectCard({ project, index, onClick, translatedName, t
         <div className="absolute inset-0 bg-gradient-to-t from-primary-900/90 via-primary-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-6">
           <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
             <span className="inline-block px-3 py-1 text-xs font-medium bg-white/20 text-white rounded-full mb-3 backdrop-blur-sm">
-              {project.category === 'web' ? 'Web' : 'Mobile'}
+              {t.projects.filters.find((f) => f.value === project.category)?.label ?? project.category}
             </span>
             <h3 className="text-white font-bold text-lg mb-1">{translatedName}</h3>
             <p className="text-white/70 text-sm">{translatedDescription}</p>

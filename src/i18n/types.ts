@@ -13,6 +13,10 @@ export interface Translations {
     description: string
     viewProjects: string
     contact: string
+    viewCV: string
+    downloadCV: string
+    copyLink: string
+    copied: string
     scroll: string
     yearsExp: string
     ofExperience: string
@@ -52,6 +56,7 @@ export interface Translations {
     label: string
     title: string
     subtitle: string
+    featuredLabel: string
     filters: { label: string; value: string }[]
     items: { id: number; name: string; description: string }[]
   }
