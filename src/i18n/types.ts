@@ -70,6 +70,34 @@ export interface Translations {
       name: string
       description: string
     }[]
+    form: {
+      title: string
+      name: string
+      namePlaceholder: string
+      email: string
+      emailPlaceholder: string
+      subject: string
+      subjectPlaceholder: string
+      subjectOptions: { label: string; value: string }[]
+      message: string
+      messagePlaceholder: string
+      send: string
+      sending: string
+      success: string
+      successDetail: string
+      error: string
+      errorDetail: string
+      retry: string
+      errors: {
+        nameRequired: string
+        nameMin: string
+        emailRequired: string
+        emailInvalid: string
+        subjectRequired: string
+        messageRequired: string
+        messageMin: string
+      }
+    }
   }
   footer: {
     role: string
