@@ -64,7 +64,7 @@ export const es: Translations = {
       {
         title: 'Líder de Marketing & Diseñadora UI/UX',
         company: 'PAiCore Technologies',
-        period: '2022 - Actualidad',
+        period: '2022 - 2026',
         current: true,
         responsibilities: [
           'Mantenimiento de página web y redes sociales',

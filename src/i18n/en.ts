@@ -64,7 +64,7 @@ export const en: Translations = {
       {
         title: 'Marketing Lead & UI/UX Designer',
         company: 'PAiCore Technologies',
-        period: '2022 - Present',
+        period: '2022 - 2026',
         current: true,
         responsibilities: [
           'Website and social media management',
